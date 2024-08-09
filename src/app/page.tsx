@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react";
 import isDead from "@/utils/isDead";
 import Nav from "@/components/Nav";
-import Notification from "@/components/Notification";
+import History from "@/components/History"; 
 import Start from "@/components/Start";
-import Button from "@/components/Buton";
+import Action from "@/components/Action";
 import { useActiveAccount } from "thirdweb/react";
 
 export default function Home() {
@@ -18,31 +18,33 @@ export default function Home() {
 
   return (
     <div className="flex flex-col h-screen">
-      {<Nav />}
-      <div className="flex justify-center items-center ">
-        {activeAccount ? <Notification /> : <></>}
-      </div>
+      <Nav />
       <div className="flex flex-col md:flex-row justify-center items-center">
         <>
+          <History
+            disabled={!activeAccount || dead}
+            address={activeAccount?.address}
+            tailwindStyles="bg-blue-400"
+          />
           <Start
             disabled={!!activeAccount || !dead}
             address={activeAccount?.address}
             tailwindStyles="bg-green-400"
           />
-          <Button
-            disabled={dead}
+          <Action
+            disabled={!activeAccount || dead}
             method="eat"
             address={activeAccount?.address}
             tailwindStyles="bg-red-400"
           />
-          <Button
-            disabled={dead}
+          <Action
+            disabled={!activeAccount || dead}
             method="nap"
             address={activeAccount?.address}
             tailwindStyles="bg-yellow-400"
           />
-          <Button
-            disabled={dead}
+          <Action
+            disabled={!activeAccount || dead}
             method="run"
             address={activeAccount?.address}
             tailwindStyles="bg-blue-400"

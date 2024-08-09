@@ -1,13 +1,18 @@
-import { goldskyUrl, goldskyQuery } from "../app/client";
+import { goldskyUrl } from "../app/client";
 
-export default async function fetchTransactions(): Promise<Action[]> {
+export default async function fetchTransactions(
+  query: string
+): Promise<Action> {
+  console.log(query)
   return fetch(goldskyUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ query: goldskyQuery }),
+    body: JSON.stringify({ query }),
   })
     .then((res) => res.json())
-    .then(({ data }) => data.actions);
+    .then(({ data }) => {
+      return data.actions;
+    });
 }

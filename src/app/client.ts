@@ -19,9 +19,6 @@ export const chain = baseSepolia;
 export const goldskyUrl =
   "https://api.goldsky.com/api/public/project_clvtxueu97rs401x05mh991np/subgraphs/tamayoshi-base-sepolia/1.0.0/gn";
 
-export const goldskyQuery =
-  "query MyQuery { actions(orderBy: timestamp_, orderDirection: desc, first: 100) { action address amount block_number id timestamp_ transactionHash_ contractId_ } }";
-
 export const etherscanUrl = "https://sepolia.basescan.org";
 
 // https://portal.thirdweb.com/references/typescript/v5/prepareContractCall

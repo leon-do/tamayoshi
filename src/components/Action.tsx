@@ -14,7 +14,7 @@ interface Props {
   tailwindStyles?: string;
 }
 
-export default function Button(props: Props) {
+export default function Action(props: Props) {
   const [character, setCharacter] = useState<Character>();
   const [time, setTime] = useState<string>("00D 00H 00M 00S");
 
