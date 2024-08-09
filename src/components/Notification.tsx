@@ -3,7 +3,7 @@ import fetchTransactions from "@/utils/fetchTransactions";
 import { etherscanUrl } from "@/app/client";
 
 export default function Notification() {
-  const [transactions, setTransactions] = useState<Transaction[] | []>([]);
+  const [transactions, setTransactions] = useState<Action[] | []>([]);
 
   useEffect(() => {
     // Fetch immediately on mount
@@ -15,31 +15,25 @@ export default function Notification() {
       fetchTransactions().then((tx) => {
         setTransactions(tx);
       });
-    }, 1000);
+    }, 5000);
     // Clear interval on component unmount
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="sm:w-96 w-3/4 text-center h-40 overflow-y-auto">
+    <div className="sm:w-60 w-1/2 text-center h-40 overflow-y-auto">
       {transactions.length > 0 ? (
         transactions.map((transaction) => (
           <div
             key={transaction.timestamp_}
-            className="border-b border-gray-200 py-3"
+            className="py-3 my-2 text-center bg-red-100 rounded-lg"
           >
-            <div className="flex justify-between">
-              <div className="text-gray-500">
-                <a
-                  href={etherscanUrl + "/tx/" + transaction.transactionHash_}
-                  target={"_blank"}
-                >
-                  {transaction.player.slice(0, 6)}...
-                  {transaction.player.slice(38)}
-                </a>
-              </div>
-              <div className="text-gray-500">#{transaction.number}</div>
-            </div>
+            <a
+              href={etherscanUrl + "/tx/" + transaction.transactionHash_}
+              target={"_blank"}
+            >
+              <div className="text-gray-500">+{transaction.amount}</div>
+            </a>
           </div>
         ))
       ) : (

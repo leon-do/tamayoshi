@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Rubik_Mono_One} from "next/font/google";
 import "./globals.css";
 import { ThirdwebProvider } from "thirdweb/react";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Rubik_Mono_One({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Tamayoshi",
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={font.className}>
         <ThirdwebProvider>{children}</ThirdwebProvider>
       </body>
     </html>

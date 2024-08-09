@@ -4,19 +4,16 @@ import { TransactionButton } from "thirdweb/react";
 import { prepareContractCall } from "thirdweb";
 import { contract } from "../app/client";
 import getCharacter from "@/utils/getCharacter";
-import formatTime from "@/utils/formatTime";
 
 interface Props {
   disabled: boolean;
-  text?: string;
-  method: "eat" | "nap" | "run";
   address: string | undefined;
   tailwindStyles?: string;
 }
 
-export default function Button(props: Props) {
+export default function Start(props: Props) {
   const [character, setCharacter] = useState<Character>();
-  const [time, setTime] = useState<string>("00D 00H 00M 00S");
+  const [amount, setAmount] = useState<string>("O");
 
   useEffect(() => {
     updateCharacter();
@@ -26,15 +23,15 @@ export default function Button(props: Props) {
     const interval = setInterval(() => {
       // amount = total - (rate * (now - last))
       if (!character) return;
-      const total = character[`${props.method}` as keyof Character];
-      const rate = character[`${props.method}Rate` as keyof Character];
+      const total = character.pay;
+      const rate = character.payRate;
       const now = BigInt(Math.floor(Date.now() / 1000));
-      const last = character[`${props.method}Last` as keyof Character];
-      const amount = total - rate * (now - last);
-      setTime(formatTime(amount));
+      const last = character.payLast;
+      const amt = total + rate * (now - last);
+      setAmount(amt.toString());
     }, 1000);
     return () => clearInterval(interval);
-  }, [character, props.method]);
+  }, [character]);
 
   const updateCharacter = async () => {
     if (!props.address) return;
@@ -50,7 +47,7 @@ export default function Button(props: Props) {
         unstyled
         className={`${
           props.disabled ? "bg-gray-400" : props.tailwindStyles
-        } flex flex-col items-center justify-center
+        } break-all flex flex-col items-center justify-center
           text-5xl text-white w-60 h-60 rounded-3xl cursor-pointer mx-3 my-5
           [box-shadow:0_15px_0_0_#edf2f4,0_25px_0_0_#1b70f841]
           duration-150
@@ -59,7 +56,7 @@ export default function Button(props: Props) {
         transaction={() => {
           const tx = prepareContractCall({
             contract,
-            method: props.method,
+            method: "start",
             params: [],
           });
           return tx;
@@ -69,13 +66,13 @@ export default function Button(props: Props) {
         }}
         onTransactionConfirmed={(receipt) => {
           console.log("Transaction confirmed", receipt.transactionHash);
-          updateCharacter();
+          window.location.reload();
         }}
         onError={(error) => {
           console.error("Transaction error", error);
         }}
       >
-        {props.text || time}
+        {amount}
       </TransactionButton>
     </>
   );

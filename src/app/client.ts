@@ -16,50 +16,258 @@ export const client = createThirdwebClient({
 
 export const chain = baseSepolia;
 
+export const goldskyUrl =
+  "https://api.goldsky.com/api/public/project_clvtxueu97rs401x05mh991np/subgraphs/tamayoshi-base-sepolia/1.0.0/gn";
+
+export const goldskyQuery =
+  "query MyQuery { actions(orderBy: timestamp_, orderDirection: desc, first: 100) { action address amount block_number id timestamp_ transactionHash_ contractId_ } }";
+
+export const etherscanUrl = "https://sepolia.basescan.org";
+
 // https://portal.thirdweb.com/references/typescript/v5/prepareContractCall
 export const contract = getContract({
   client,
-  address: "0x3a8A85A6122C92581f590444449Ca9e66D8e8F35",
+  address: "0xF05d46F1859E458775b173fEfe9F6e9eDD4Ad129",
   chain,
   abi: [
-    {
-      inputs: [],
-      name: "increment",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
     {
       anonymous: false,
       inputs: [
         {
           indexed: false,
+          internalType: "string",
+          name: "_action",
+          type: "string",
+        },
+        {
+          indexed: false,
           internalType: "address",
-          name: "player",
+          name: "_address",
           type: "address",
         },
         {
           indexed: false,
           internalType: "uint256",
-          name: "number",
+          name: "_amount",
           type: "uint256",
         },
       ],
-      name: "Incremented",
+      name: "Action",
       type: "event",
     },
     {
       inputs: [],
-      name: "number",
-      outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+      name: "eat",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_address",
+          type: "address",
+        },
+      ],
+      name: "getCharacter",
+      outputs: [
+        {
+          components: [
+            {
+              internalType: "uint256",
+              name: "dob",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "dod",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "pay",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "payRate",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "payLast",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "nap",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "napRate",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "napLast",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "eat",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "eatRate",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "eatLast",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "run",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "runRate",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "runLast",
+              type: "uint256",
+            },
+          ],
+          internalType: "struct Tamayoshi.Character",
+          name: "",
+          type: "tuple",
+        },
+      ],
       stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_address",
+          type: "address",
+        },
+      ],
+      name: "getEat",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_address",
+          type: "address",
+        },
+      ],
+      name: "getNap",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_address",
+          type: "address",
+        },
+      ],
+      name: "getPay",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_address",
+          type: "address",
+        },
+      ],
+      name: "getRun",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_address",
+          type: "address",
+        },
+      ],
+      name: "isDead",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "nap",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "run",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "start",
+      outputs: [],
+      stateMutability: "nonpayable",
       type: "function",
     },
   ],
 });
-
-export const goldskyUrl = "https://api.goldsky.com/api/public/project_clvtxueu97rs401x05mh991np/subgraphs/increment-base-sepolia/1.0.0/gn"
-
-export const goldskyQuery = "query Query { incrementeds(orderBy: timestamp_, orderDirection: desc) { number player timestamp_ transactionHash_ } }"
-
-export const etherscanUrl = "https://sepolia.basescan.org"

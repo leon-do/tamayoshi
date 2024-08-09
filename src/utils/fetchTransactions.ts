@@ -1,6 +1,6 @@
 import { goldskyUrl, goldskyQuery } from "../app/client";
 
-export default async function fetchTransactions(): Promise<Transaction[]> {
+export default async function fetchTransactions(): Promise<Action[]> {
   return fetch(goldskyUrl, {
     method: "POST",
     headers: {
@@ -9,5 +9,5 @@ export default async function fetchTransactions(): Promise<Transaction[]> {
     body: JSON.stringify({ query: goldskyQuery }),
   })
     .then((res) => res.json())
-    .then(({ data }) => data.incrementeds);
+    .then(({ data }) => data.actions);
 }
