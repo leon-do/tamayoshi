@@ -17,21 +17,28 @@ export default function Start(props: Props) {
 
   useEffect(() => {
     updateCharacter();
-  }, []);
+  }, [props]);
 
+  // amount = rate * (now - last)
   useEffect(() => {
     const interval = setInterval(() => {
-      // amount = total - (rate * (now - last))
       if (!character) return;
-      const total = character.pay;
       const rate = character.payRate;
       const now = BigInt(Math.floor(Date.now() / 1000));
       const last = character.payLast;
-      const amt = total + rate * (now - last);
+      const amt = rate * (now - last);
       setAmount(amt.toString());
     }, 1000);
     return () => clearInterval(interval);
   }, [character]);
+
+  // update payLast
+  useEffect(() => {
+    const interval = setInterval(() => {
+      updateCharacter();
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [props])
 
   const updateCharacter = async () => {
     if (!props.address) return;

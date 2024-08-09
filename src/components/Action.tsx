@@ -20,7 +20,7 @@ export default function Action(props: Props) {
 
   useEffect(() => {
     updateCharacter();
-  }, []);
+  }, [props]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,7 +34,7 @@ export default function Action(props: Props) {
       setTime(formatTime(amount));
     }, 1000);
     return () => clearInterval(interval);
-  }, [character, props.method]);
+  }, [props, character]);
 
   const updateCharacter = async () => {
     if (!props.address) return;
