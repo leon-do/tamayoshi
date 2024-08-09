@@ -1,0 +1,17 @@
+<button id="btn">Click</button>
+<div id="display"></div>
+
+<script>
+  let lvl = 0;
+  btn.addEventListener("click", () => {
+    const randomNumber = Math.random();
+    if (randomNumber <= 0.88) {
+      lvl++;
+    } else {
+      lvl = 0;
+    }
+    display.innerHTML = `<br/> lvl: ${lvl} <br/>  number: ${randomNumber.toString()} <br/>  probability: ${
+      0.99 ** lvl
+    }`;
+  });
+</script>

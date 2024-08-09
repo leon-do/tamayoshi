@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* set background color variable */
+:root {
+  --background-color: #f5f5f5;
+}
+
+html {
+  background-color: var(--background-color);
+}
+
+/* change the scrollbar color to red */
+::-webkit-scrollbar {
+  background-color: var(--background-color);
+}
