@@ -2,7 +2,9 @@
 
 # Play
 
-https://Tamayoshi.on-fleek.app
+https://tamayoshi.on-fleek.app
+or
+https://tamayoshi.vercel.app/
 
 # Dev
 
