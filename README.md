@@ -1,6 +1,6 @@
 # Tamayoshi
 
-![](https://github.com/user-attachments/assets/c4c51f78-62b6-4ad9-a271-6d3b94445bc5)
+![](https://github.com/user-attachments/assets/b6b8012f-62a1-4c02-81b0-ae5b82725995)
 
 # Play
 
