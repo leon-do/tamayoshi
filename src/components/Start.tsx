@@ -4,6 +4,7 @@ import { TransactionButton } from "thirdweb/react";
 import { prepareContractCall } from "thirdweb";
 import { contract } from "../app/client";
 import getCharacter from "@/utils/getCharacter";
+import formatAmount from "@/utils/formatAmount";
 
 interface Props {
   disabled: boolean;
@@ -38,7 +39,7 @@ export default function Start(props: Props) {
       updateCharacter();
     }, 1000);
     return () => clearInterval(interval);
-  }, [props])
+  }, [props]);
 
   const updateCharacter = async () => {
     if (!props.address) return;
@@ -52,10 +53,8 @@ export default function Start(props: Props) {
       <TransactionButton
         disabled={props.disabled}
         unstyled
-        className={`${
-          props.disabled ? "bg-gray-400" : props.tailwindStyles
-        } break-all flex flex-col items-center justify-center
-          text-5xl text-white w-60 h-60 rounded-3xl cursor-pointer mx-3 my-5
+        className={`${props.tailwindStyles} flex flex-col items-center justify-center
+          text-5xl text-white rounded-3xl cursor-pointer
           [box-shadow:0_15px_0_0_#edf2f4,0_25px_0_0_#1b70f841]
           duration-150
           active:translate-y-2
@@ -79,7 +78,7 @@ export default function Start(props: Props) {
           console.error("Transaction error", error);
         }}
       >
-        {amount}
+        {formatAmount(amount)}
       </TransactionButton>
     </>
   );

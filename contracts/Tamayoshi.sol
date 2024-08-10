@@ -9,7 +9,6 @@ contract Tamayoshi {
         uint dob;       // Date of Birth/Block
         uint dod;       // Date of Death X_X
 
-        uint pay;       // current dollar amount
         uint payRate;   // increase amount per block
         uint payLast;   // last pay block time
 
@@ -27,9 +26,7 @@ contract Tamayoshi {
     }
 
     // EVENTS
-    event Nap(address _address, uint _amount);
-    event Eat(address _address, uint _amount);
-    event Run(address _address, uint _amount);
+    event Action(string _action, address _address, uint _amount);
 
     //  WRITE FUNCTIONS
     function start() public {
@@ -39,8 +36,7 @@ contract Tamayoshi {
         character.dob = block.timestamp;
         character.dod = 0;
 
-        character.pay = 3600;
-        character.payRate = random("pay", 25, 100);
+        character.payRate = random("pay", 30, 60);
         character.payLast = block.timestamp;
 
         character.nap = 3600;
@@ -54,6 +50,7 @@ contract Tamayoshi {
         character.run = 3600;
         character.runRate = random("run", 1, 5);
         character.runLast = block.timestamp;
+        emit Action("start", msg.sender, 0);
     }
 
     function nap() public {
@@ -61,9 +58,8 @@ contract Tamayoshi {
         Character storage character = characters[msg.sender];
         uint amount = getPay(msg.sender);
         character.nap = character.nap + amount;
-        character.pay = 0;
         character.payLast = block.timestamp;
-        emit Nap(msg.sender, amount);
+        emit Action("nap", msg.sender, amount);
     }
 
     function eat() public {
@@ -71,9 +67,8 @@ contract Tamayoshi {
         Character storage character = characters[msg.sender];
         uint amount = getPay(msg.sender);
         character.eat = character.eat + amount;
-        character.pay = 0;
         character.payLast = block.timestamp;
-        emit Eat(msg.sender, amount);
+        emit Action("eat", msg.sender, amount);
     }
 
     function run() public {
@@ -81,9 +76,8 @@ contract Tamayoshi {
         Character storage character = characters[msg.sender];
         uint amount = getPay(msg.sender);
         character.run = character.run + amount;
-        character.pay = 0;
         character.payLast = block.timestamp;
-        emit Run(msg.sender, amount);
+        emit Action("run", msg.sender, amount);
     }
 
     //  READ FUNCTIONS
@@ -94,7 +88,7 @@ contract Tamayoshi {
     // get current amount = total + (rate * (now - last))
     function getPay(address _address) public view returns(uint) {
         Character storage character = characters[_address];
-        return character.pay + (character.payRate * (block.timestamp - character.payLast));
+        return (character.payRate * (block.timestamp - character.payLast));
     }
 
     // get current amount = total - (rate * (now - last))
