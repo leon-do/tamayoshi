@@ -1,5 +1,7 @@
 # Tamayoshi
 
+![](https://github.com/user-attachments/assets/c4c51f78-62b6-4ad9-a271-6d3b94445bc5)
+
 # Play
 
 https://tamayoshi.on-fleek.app
