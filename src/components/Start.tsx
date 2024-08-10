@@ -83,7 +83,7 @@ export default function Start(props: Props) {
           console.error("Transaction error", error);
         }}
       >
-        {!props.dead && !props.disabled ? formatAmount(amount) : "O"}
+        {!props.dead && !props.disabled ? formatAmount(amount) : ""}
       </TransactionButton>
     </>
   );
