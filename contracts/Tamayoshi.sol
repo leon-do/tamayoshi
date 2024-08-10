@@ -36,7 +36,7 @@ contract Tamayoshi {
         character.dob = block.timestamp;
         character.dod = 0;
 
-        character.payRate = random("pay", 30, 60);
+        character.payRate = random("pay", 25, 50);
         character.payLast = block.timestamp;
 
         character.nap = 3600;
