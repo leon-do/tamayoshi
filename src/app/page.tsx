@@ -20,11 +20,7 @@ export default function Home() {
     <div className="flex flex-col h-screen bg-slate-400">
       <Nav />
       <div className="h-screen grid grid-cols-2 grid-rows-3 md:grid-cols-3 md:grid-rows-2 pb-12 gap-y-10 gap-x-5 px-5">
-        <Start
-          disabled={!!activeAccount || !dead}
-          address={activeAccount?.address}
-          tailwindStyles="bg-green-400"
-        />
+        <Start address={activeAccount?.address} tailwindStyles="bg-green-400" />
         <Action
           disabled={!activeAccount || dead}
           method="eat"

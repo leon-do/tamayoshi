@@ -1,5 +1,6 @@
 import { ConnectButton, lightTheme } from "thirdweb/react";
 import { client, chain } from "../app/client";
+import { inAppWallet } from "thirdweb/wallets";
 
 export default function Nav() {
   return (

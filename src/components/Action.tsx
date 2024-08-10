@@ -8,7 +8,6 @@ import formatTime from "@/utils/formatTime";
 
 interface Props {
   disabled: boolean;
-  text?: string;
   method: "eat" | "nap" | "run";
   address: string | undefined;
   tailwindStyles?: string;
@@ -75,7 +74,7 @@ export default function Action(props: Props) {
           console.error("Transaction error", error);
         }}
       >
-        {props.text || time}
+        {!character ? "000 000 000 000" : time}
       </TransactionButton>
     </>
   );

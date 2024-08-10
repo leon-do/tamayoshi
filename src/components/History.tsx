@@ -32,7 +32,7 @@ export default function History(props: Props) {
     <div
       className={`${
         props.disabled ? "bg-gray-400" : props.tailwindStyles
-      } break-all flex flex-col items-center justify-center
+      } flex flex-col items-center justify-center
         text-5xl text-white rounded-3xl cursor-pointer
         [box-shadow:0_15px_0_0_#edf2f4,0_25px_0_0_#1b70f841]
         duration-150
@@ -49,7 +49,9 @@ export default function History(props: Props) {
           {formatAmount(transaction[0].amount.toString())}
         </a>
       ) : (
-        <>+</>
+        <div className="flex flex-col items-center justify-center h-full text-center">
+          000 000 000 000
+        </div>
       )}
     </div>
   );

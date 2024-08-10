@@ -7,7 +7,6 @@ import getCharacter from "@/utils/getCharacter";
 import formatAmount from "@/utils/formatAmount";
 
 interface Props {
-  disabled: boolean;
   address: string | undefined;
   tailwindStyles?: string;
 }
@@ -51,7 +50,6 @@ export default function Start(props: Props) {
     <>
       {/* https://portal.thirdweb.com/typescript/v5/transactions/prepare */}
       <TransactionButton
-        disabled={props.disabled}
         unstyled
         className={`${props.tailwindStyles} flex flex-col items-center justify-center
           text-5xl text-white rounded-3xl cursor-pointer
@@ -78,7 +76,7 @@ export default function Start(props: Props) {
           console.error("Transaction error", error);
         }}
       >
-        {formatAmount(amount)}
+        {!character ? "000 000 000 000" : formatAmount(amount)}
       </TransactionButton>
     </>
   );
