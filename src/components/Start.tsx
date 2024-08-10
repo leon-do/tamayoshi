@@ -7,6 +7,7 @@ import getCharacter from "@/utils/getCharacter";
 import formatAmount from "@/utils/formatAmount";
 
 interface Props {
+  disabled: boolean;
   address: string | undefined;
   tailwindStyles?: string;
 }
@@ -76,7 +77,7 @@ export default function Start(props: Props) {
           console.error("Transaction error", error);
         }}
       >
-        {!character ? "000 000 000 000" : formatAmount(amount)}
+        {props.disabled ? "000 000 000 000" : formatAmount(amount)}
       </TransactionButton>
     </>
   );

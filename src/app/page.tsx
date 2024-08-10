@@ -5,6 +5,7 @@ import Nav from "@/components/Nav";
 import History from "@/components/History";
 import Start from "@/components/Start";
 import Action from "@/components/Action";
+import Face from "@/components/Face";
 import { useActiveAccount } from "thirdweb/react";
 
 export default function Home() {
@@ -20,7 +21,17 @@ export default function Home() {
     <div className="flex flex-col h-screen bg-slate-400">
       <Nav />
       <div className="h-screen grid grid-cols-2 grid-rows-3 md:grid-cols-3 md:grid-rows-2 pb-12 gap-y-10 gap-x-5 px-5">
-        <Start address={activeAccount?.address} tailwindStyles="bg-green-400" />
+        <Start
+          disabled={!activeAccount || dead}
+          address={activeAccount?.address}
+          tailwindStyles="bg-green-400"
+        />
+        <Face disabled={!activeAccount || dead} />
+        <History
+          disabled={!activeAccount || dead}
+          address={activeAccount?.address}
+          tailwindStyles="bg-orange-400"
+        />
         <Action
           disabled={!activeAccount || dead}
           method="eat"
@@ -38,11 +49,6 @@ export default function Home() {
           method="run"
           address={activeAccount?.address}
           tailwindStyles="bg-blue-400"
-        />
-        <History
-          disabled={!activeAccount || dead}
-          address={activeAccount?.address}
-          tailwindStyles="bg-orange-400"
         />
       </div>
     </div>

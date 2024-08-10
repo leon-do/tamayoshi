@@ -74,7 +74,7 @@ export default function Action(props: Props) {
           console.error("Transaction error", error);
         }}
       >
-        {!character ? "000 000 000 000" : time}
+        {props.disabled ? "000 000 000 000" : time}
       </TransactionButton>
     </>
   );
