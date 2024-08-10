@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import fetchTransactions from "@/utils/fetchTransactions";
-import { etherscanUrl } from "@/app/client";
+import { blockscoutUrl } from "@/app/client";
 import formatAmount from "@/utils/formatAmount";
 
 interface Props {
@@ -41,7 +41,7 @@ export default function History(props: Props) {
     >
       {!props.disabled && transaction && transaction.length > 0 ? (
         <a
-          href={`${etherscanUrl}/tx/${transaction[0]?.transactionHash_}`}
+          href={`${blockscoutUrl}/tx/${transaction[0]?.transactionHash_}`}
           target="_blank"
           rel="noreferrer"
           className="flex flex-col items-center justify-center h-full text-center"
