@@ -17,7 +17,7 @@ export default function Home() {
   }, [activeAccount, dead]);
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen bg-slate-400">
       <Nav />
       <div className="h-screen grid grid-cols-2 grid-rows-3 md:grid-cols-3 md:grid-rows-2 pb-12 gap-y-10 gap-x-5 px-5">
         <Start

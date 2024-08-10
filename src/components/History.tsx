@@ -39,14 +39,14 @@ export default function History(props: Props) {
         active:translate-y-2
         active:[box-shadow:0_0px_0_0_#edf2f4,0_0px_0_0_#1b70f841]`}
     >
-      {transaction ? (
+      {transaction && transaction.length > 0 ? (
         <a
           href={`${etherscanUrl}/tx/${transaction[0]?.transactionHash_}`}
           target="_blank"
           rel="noreferrer"
           className="flex flex-col items-center justify-center h-full text-center"
         >
-          {formatAmount(transaction[0]?.amount.toString())}
+          {formatAmount(transaction[0].amount.toString())}
         </a>
       ) : (
         <>+</>

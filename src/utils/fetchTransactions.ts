@@ -2,7 +2,7 @@ import { goldskyUrl } from "../app/client";
 
 export default async function fetchTransactions(
   query: string
-): Promise<Action> {
+): Promise<Action[]> {
   return fetch(goldskyUrl, {
     method: "POST",
     headers: {
