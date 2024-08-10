@@ -1,11 +1,15 @@
 import "react-awesome-button/dist/styles.css";
+import { useState } from "react";
 
 interface Props {
   disabled: boolean;
 }
 
 export default function Face(props: Props) {
-  const face = `【≽ܫ≼】`;
+  // pretter-ignore
+  const faces = ["【≽ܫ≼】", "ಠ╭╮ಠ", "(ᵔᴥᵔ)", "◔̯◔"];
+  const [face, setFace] = useState<string>(faces[0]);
+
   return (
     <>
       <div
@@ -17,6 +21,7 @@ export default function Face(props: Props) {
           duration-150
           active:translate-y-2
           active:[box-shadow:0_0px_0_0_#edf2f4,0_0px_0_0_#1b70f841]`}
+        onClick={() => setFace(faces[Math.floor(Math.random() * faces.length)])}
       >
         {face}
       </div>
