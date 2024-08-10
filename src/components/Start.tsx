@@ -7,6 +7,7 @@ import getCharacter from "@/utils/getCharacter";
 import formatAmount from "@/utils/formatAmount";
 
 interface Props {
+  dead: boolean;
   disabled: boolean;
   address: string | undefined;
   tailwindStyles?: string;
@@ -14,14 +15,16 @@ interface Props {
 
 export default function Start(props: Props) {
   const [character, setCharacter] = useState<Character>();
-  const [amount, setAmount] = useState<string>("O");
+  const [amount, setAmount] = useState<string>("");
 
   useEffect(() => {
+    if (props.dead) return;
     updateCharacter();
   }, [props]);
 
   // amount = rate * (now - last)
   useEffect(() => {
+    if (props.dead) return;
     const interval = setInterval(() => {
       if (!character) return;
       const rate = character.payRate;
@@ -29,12 +32,13 @@ export default function Start(props: Props) {
       const last = character.payLast;
       const amt = rate * (now - last);
       setAmount(amt.toString());
-    }, 1000);
+    }, 100);
     return () => clearInterval(interval);
   }, [character]);
 
   // update payLast
   useEffect(() => {
+    if (props.dead) return;
     const interval = setInterval(() => {
       updateCharacter();
     }, 1000);
@@ -52,8 +56,10 @@ export default function Start(props: Props) {
       {/* https://portal.thirdweb.com/typescript/v5/transactions/prepare */}
       <TransactionButton
         unstyled
-        className={`${props.tailwindStyles} flex flex-col items-center justify-center
-          text-5xl text-white rounded-3xl cursor-pointer
+        className={`${
+          props.disabled ? "bg-gray-400" : props.tailwindStyles
+        } flex flex-col items-center justify-center
+          text-5xl text-white rounded-3xl cursor-pointer min-h-[180px]
           [box-shadow:0_15px_0_0_#edf2f4,0_25px_0_0_#1b70f841]
           duration-150
           active:translate-y-2
@@ -77,7 +83,7 @@ export default function Start(props: Props) {
           console.error("Transaction error", error);
         }}
       >
-        {props.disabled ? "000 000 000 000" : formatAmount(amount)}
+        {!props.dead && !props.disabled ? formatAmount(amount) : "O"}
       </TransactionButton>
     </>
   );

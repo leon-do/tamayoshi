@@ -32,14 +32,14 @@ export default function History(props: Props) {
     <div
       className={`${
         props.disabled ? "bg-gray-400" : props.tailwindStyles
-      } flex flex-col items-center justify-center
+      } flex flex-col items-center justify-center min-h-[180px]
         text-5xl text-white rounded-3xl cursor-pointer
         [box-shadow:0_15px_0_0_#edf2f4,0_25px_0_0_#1b70f841]
         duration-150
         active:translate-y-2
         active:[box-shadow:0_0px_0_0_#edf2f4,0_0px_0_0_#1b70f841]`}
     >
-      {transaction && transaction.length > 0 ? (
+      {!props.disabled && transaction && transaction.length > 0 ? (
         <a
           href={`${etherscanUrl}/tx/${transaction[0]?.transactionHash_}`}
           target="_blank"
@@ -49,9 +49,7 @@ export default function History(props: Props) {
           {formatAmount(transaction[0].amount.toString())}
         </a>
       ) : (
-        <div className="flex flex-col items-center justify-center h-full text-center">
-          000 000 000 000
-        </div>
+        <div className="flex flex-col items-center justify-center h-full text-center"></div>
       )}
     </div>
   );

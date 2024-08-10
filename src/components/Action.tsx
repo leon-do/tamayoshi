@@ -49,7 +49,7 @@ export default function Action(props: Props) {
         unstyled
         className={`${
           props.disabled ? "bg-gray-400" : props.tailwindStyles
-        } flex flex-col items-center justify-center
+        } flex flex-col items-center justify-center min-h-[180px]
           text-5xl text-white rounded-3xl cursor-pointer
           [box-shadow:0_15px_0_0_#edf2f4,0_25px_0_0_#1b70f841]
           duration-150
@@ -74,7 +74,7 @@ export default function Action(props: Props) {
           console.error("Transaction error", error);
         }}
       >
-        {props.disabled ? "000 000 000 000" : time}
+        {props.disabled ? "" : time}
       </TransactionButton>
     </>
   );

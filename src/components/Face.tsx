@@ -15,7 +15,7 @@ export default function Face(props: Props) {
       <div
         className={`${
           props.disabled ? "bg-gray-400" : "bg-pink-400"
-        } flex flex-col items-center justify-center
+        } flex flex-col items-center justify-center min-h-[180px]
           text-5xl text-white rounded-3xl cursor-pointer
           [box-shadow:0_15px_0_0_#edf2f4,0_25px_0_0_#1b70f841]
           duration-150
@@ -23,7 +23,7 @@ export default function Face(props: Props) {
           active:[box-shadow:0_0px_0_0_#edf2f4,0_0px_0_0_#1b70f841]`}
         onClick={() => setFace(faces[Math.floor(Math.random() * faces.length)])}
       >
-        {face}
+        {props.disabled ? "" : face}
       </div>
     </>
   );

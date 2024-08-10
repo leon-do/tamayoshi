@@ -20,9 +20,10 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen">
       <Nav />
-      <div className="h-screen grid grid-cols-2 grid-rows-3 md:grid-cols-3 md:grid-rows-2 pb-12 gap-y-10 gap-x-5 px-5">
+      <div className="overflow-y-auto h-screen grid grid-cols-2 grid-rows-3 md:grid-cols-3 md:grid-rows-2 pb-12 gap-y-10 gap-x-5 px-5 min-h-[500px]">
         <Start
-          disabled={!activeAccount || dead}
+          dead={dead}
+          disabled={!activeAccount}
           address={activeAccount?.address}
           tailwindStyles="bg-green-400"
         />
