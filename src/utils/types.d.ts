@@ -12,7 +12,6 @@ interface Action {
 interface Character {
   dob: bigint;
   dod: bigint;
-  pay: bigint;
   payRate: bigint;
   payLast: bigint;
   nap: bigint;
