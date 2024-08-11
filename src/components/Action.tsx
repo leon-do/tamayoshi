@@ -22,6 +22,7 @@ export default function Action(props: Props) {
   }, [props]);
 
   useEffect(() => {
+    if (props.disabled) return;
     const interval = setInterval(() => {
       // amount = total - (rate * (now - last))
       if (!character) return;
@@ -30,6 +31,7 @@ export default function Action(props: Props) {
       const now = BigInt(Math.floor(Date.now() / 1000));
       const last = character[`${props.method}Last` as keyof Character];
       const amount = total - rate * (now - last);
+      if (amount < 0) return window.location.reload();
       setTime(formatTime(amount));
     }, 1000);
     return () => clearInterval(interval);
